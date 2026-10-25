@@ -18,6 +18,7 @@ import com.bck.screen.NoteListScreenData
 import com.bck.screen.NotePreviewScreenData
 import com.bck.screen.NotesRecycleBinScreenData
 import com.bck.viewmodel.NotesListViewModel
+import com.bck.viewmodel.RecycleBinViewModel
 
 @Composable
 fun NavLayout() {
@@ -90,9 +91,7 @@ fun NavLayout() {
             )
         }
         composable<NotesRecycleBinScreenData> {
-            NotesRecycleBin(
-                onDelete = { }, onRecover = {}
-            )
+            NotesRecycleBin(onRecover = {notesListViewModel.loadNotes()})
         }
         composable<AboutScreenData> { AboutLayout() }
     }

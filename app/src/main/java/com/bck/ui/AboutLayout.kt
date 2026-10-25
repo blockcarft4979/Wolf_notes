@@ -76,7 +76,6 @@ fun AboutLayout() {
             }
             Spacer(modifier = Modifier.height(16.dp))
 
-            // 应用名称
             Text(
                 text = stringResource(R.string.app_name),
                 style = MaterialTheme.typography.headlineSmall,
@@ -84,7 +83,6 @@ fun AboutLayout() {
             )
             Spacer(modifier = Modifier.height(4.dp))
 
-            // 版本信息
             Text(
                 text = "Version $appVersion",
                 style = MaterialTheme.typography.bodySmall,
@@ -92,7 +90,6 @@ fun AboutLayout() {
             )
             Spacer(modifier = Modifier.height(24.dp))
 
-            // 简介卡片
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(20.dp),

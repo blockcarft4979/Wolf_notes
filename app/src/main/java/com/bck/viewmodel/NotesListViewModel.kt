@@ -18,11 +18,11 @@ class NotesListViewModel : ViewModel() {
     private val _notesData = MutableStateFlow<List<NotesData>>(emptyList())
     val notesData: StateFlow<List<NotesData>> = _notesData.asStateFlow()
     init {
-        _notesData.value = loadAllNotesFromDirectory(Path.NOTES_PATH)
+        _notesData.value = loadAllNotesFromDirectory(Path.NOTES_DIR)
     }
 
     fun loadNotes() {
-        _notesData.value = loadAllNotesFromDirectory(Path.NOTES_PATH)
+        _notesData.value = loadAllNotesFromDirectory(Path.NOTES_DIR)
     }
     fun deleteNote(context: Context, note: NotesData) {
         viewModelScope.launch {

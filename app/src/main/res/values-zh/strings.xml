@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">小狼便签</string>
     <string name="welcome">欢迎</string>
@@ -6,11 +5,20 @@
     <string name="cancel">取消</string>
     <string name="about">关于</string>
     <string name="recycle_bin">回收站</string>
-    <string name="app_introduction">一款小巧的便签软件，由BLOCKCARFT开发</string>
+    <string name="app_introduction">"一款由 BLOCKCARFT 开发的简洁便签应用"</string>
     <string name="follow_me">关注我</string>
     <string name="preview_note">预览便签</string>
-    <string name="add_tip_1">还没有便签，点击 + 创建一个吧</string>
+    <string name="add_tip_1">暂无便签，点击 + 创建一个</string>
     <string name="save_failed">保存失败</string>
     <string name="recover">恢复</string>
-    <string name="tips_2">回收站没有任何东西</string>
+    <string name="tips_2">回收站是空的</string>
+    <string name="notes">便签</string>
+    <string name="more_hint">更多</string>
+    <string name="edit_hint">编辑</string>
+    <string name="back_hint">返回</string>
+    <string name="new_note_hint">新建便签</string>
+    <string name="save_hint">保存</string>
+    <string name="title_hint">标题</string>
+    <string name="content_hint">内容</string>
+    <string name="delete_hint">删除</string>
 </resources>

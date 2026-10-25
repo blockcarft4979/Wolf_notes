@@ -101,14 +101,6 @@ fun NotePreview(
                                 color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f)
                             )
                             Spacer(modifier = Modifier.height(12.dp))
-                        } else {
-                            Text(
-                                text = "无标题",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
-                                fontStyle = FontStyle.Italic
-                            )
-                            Spacer(modifier = Modifier.height(12.dp))
                         }
 
                         if (content != null) {
@@ -118,14 +110,6 @@ fun NotePreview(
                                 color = MaterialTheme.colorScheme.onSurface,
                                 lineHeight = 24.sp
                             )
-                        } else {
-                            Text(
-                                text = "无内容",
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
-                                fontStyle = FontStyle.Italic
-                            )
-                            Spacer(modifier = Modifier.height(8.dp))
                         }
                     }
                 }

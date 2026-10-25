@@ -1,7 +1,5 @@
 package com.bck.ui
 
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -36,6 +34,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.bck.component.HintCard
 import com.bck.component.NoteCard
 import com.bck.data.NotesData
 import com.bck.viewmodel.NotesListViewModel
@@ -48,7 +47,7 @@ import kotlinx.coroutines.launch
 fun NoteList(
     notesListViewModel: NotesListViewModel,
     onToDelete: (NotesData) -> Unit,
-    onToEdit:(NotesData)-> Unit,
+    onToEdit: (NotesData) -> Unit,
     onClick: (NotesData) -> Unit,
     onAddNewNote: () -> Unit,
     onToRecycleBin: () -> Unit,
@@ -110,69 +109,72 @@ fun NoteList(
                 }
             }
         ) {
-            LazyColumn(modifier = Modifier.fillMaxSize()) {
-                items(notesData, key = { it.id }) { note ->
-                    @Suppress("DEPRECATION")
-                    val dismissState = rememberSwipeToDismissBoxState(
-                        confirmValueChange = { dismissValue ->
-                            when (dismissValue) {
-                                SwipeToDismissBoxValue.EndToStart -> {
-                                    onToDelete(note)
-                                    true
-                                }
-                                SwipeToDismissBoxValue.StartToEnd -> {
-                                    onToEdit(note)
-                                    false
-                                }
-                                else -> false
-                            }
-                        })
 
-                    SwipeToDismissBox(
-                        state = dismissState,
-                        backgroundContent = {
-                            // 滑动时显示的背景：红色 + 删除图标
-                            val color by animateColorAsState(
-                                when (dismissState.targetValue) {
-                                    SwipeToDismissBoxValue.EndToStart -> Color.Red
-                                    else -> Color.Transparent
-                                }, label = "bg_color"
-                            )
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .background(color)
-                                    .padding(horizontal = 20.dp),
-                                contentAlignment = Alignment.CenterEnd
-                            ) {
-                                Icon(
-                                    tint = MaterialTheme.colorScheme.primary.copy(0.8f),
-                                    painter = painterResource(R.drawable.baseline_delete_sweep_24),
-                                    contentDescription = stringResource(R.string.delete_hint)
-                                )
-                            }
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .background(color)
-                                    .padding(horizontal = 20.dp),
-                                contentAlignment = Alignment.CenterStart
-                            ) {
-                                Icon(
-                                    painter = painterResource(R.drawable.baseline_edit_24), "编辑"
-                                )
-                            }
+            if (notesData.isNotEmpty()) {
+                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                    items(notesData, key = { it.id }) { note ->
+                        @Suppress("DEPRECATION")
+                        val dismissState = rememberSwipeToDismissBoxState(
+                            confirmValueChange = { dismissValue ->
+                                when (dismissValue) {
+                                    SwipeToDismissBoxValue.EndToStart -> {
+                                        onToDelete(note)
+                                        true
+                                    }
 
-                        },
-                        modifier = Modifier.animateItem(),
-                        enableDismissFromStartToEnd = true,
-                        enableDismissFromEndToStart = true
-                    ) {
-                        // 正常显示的卡片
-                        NoteCard(
-                            note = note, onClick = { onClick(note) })
+                                    SwipeToDismissBoxValue.StartToEnd -> {
+                                        onToEdit(note)
+                                        false
+                                    }
+
+                                    else -> false
+                                }
+                            })
+
+                        SwipeToDismissBox(
+                            state = dismissState,
+                            backgroundContent = {
+
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(horizontal = 20.dp),
+                                    contentAlignment = Alignment.CenterEnd
+                                ) {
+                                    Icon(
+                                        painter = painterResource(R.drawable.baseline_delete_sweep_24),
+                                        contentDescription = stringResource(R.string.delete_hint),
+                                        tint = Color.Red
+                                    )
+                                }
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(horizontal = 20.dp),
+                                    contentAlignment = Alignment.CenterStart
+                                ) {
+                                    Icon(
+                                        tint = MaterialTheme.colorScheme.primary.copy(0.8f),
+                                        painter = painterResource(R.drawable.baseline_edit_24),
+                                        contentDescription = stringResource(R.string.edit_hint)
+                                    )
+                                }
+
+                            },
+                            modifier = Modifier.animateItem(),
+                            enableDismissFromStartToEnd = true,
+                            enableDismissFromEndToStart = true
+                        ) {
+                            NoteCard(
+                                note = note, onClick = { onClick(note) })
+                        }
                     }
                 }
+            }else{
+                HintCard(
+                    R.drawable.baseline_add_24,
+                    stringResource(R.string.add_tip_1)
+                )
             }
         }
     }

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">小狼便箋</string>
+    <string name="welcome">歡迎</string>
+    <string name="add">新增</string>
+    <string name="cancel">取消</string>
+    <string name="about">關於</string>
+    <string name="recycle_bin">回收站</string>
+    <string name="app_introduction">"一款由 BLOCKCARFT 開發的簡潔便箋應用"</string>
+    <string name="follow_me">關注我</string>
+    <string name="preview_note">預覽便箋</string>
+    <string name="add_tip_1">尚無便箋，點擊 + 建立一個</string>
+    <string name="save_failed">儲存失敗</string>
+    <string name="recover">復原</string>
+    <string name="tips_2">回收站是空的</string>
+    <string name="notes">便箋</string>
+    <string name="more_hint">更多</string>
+    <string name="edit_hint">編輯</string>
+    <string name="back_hint">返回</string>
+    <string name="new_note_hint">新增便箋</string>
+    <string name="save_hint">儲存</string>
+    <string name="title_hint">標題</string>
+    <string name="content_hint">內容</string>
+    <string name="delete_hint">刪除</string>
+</resources>

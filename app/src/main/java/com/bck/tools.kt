@@ -15,38 +15,26 @@ import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 
-fun loadAllNotesFromDirectory(path: String): MutableList<NotesData> {
+fun loadAllNotesFromDirectory(dir: File): MutableList<NotesData> {
     val notes = mutableListOf<NotesData>()
     val gson = Gson()
 
-    val dir = File(Environment.getExternalStorageDirectory(), path)
+    if (!dir.exists() || !dir.isDirectory) return notes
 
-    if (!dir.exists() || !dir.isDirectory) {
-        return notes
-    }
-
-    val jsonFiles = dir.listFiles { file -> file.extension == "json" }
-    jsonFiles?.forEach { file ->
+    dir.listFiles { f -> f.extension == "json" }?.forEach { file ->
         try {
-            val jsonString = file.readText()
-            val note = gson.fromJson(jsonString, NotesData::class.java)
-
+            val note = gson.fromJson(file.readText(), NotesData::class.java)
             notes.add(
                 note.copy(
                     id = file.name,
                     time = formatRelativeTimeFromTimestamp(file.lastModified())
                 )
             )
-            //notes.add(note.copy(time = formatRelativeTimeFromTimestamp(file.lastModified())))
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
-    notes.sortByDescending { note ->
-        val file = File(dir, note.id)
-        if (file.exists()) file.lastModified() else 0L
-    }
-    //Log.d("woshiload", "已发现${notes.size}条数据")
+    notes.sortByDescending { File(dir, it.id).takeIf { f -> f.exists() }?.lastModified() ?: 0L }
     return notes
 }
 
