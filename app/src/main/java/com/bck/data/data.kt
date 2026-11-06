@@ -1,10 +1,12 @@
 package com.bck.data
 
 import android.os.Environment
+import androidx.annotation.Keep
 import kotlinx.serialization.Serializable
 import java.io.File
 
 @Serializable
+@Keep
 data class NotesData(
     val id: String = "",
     val content: String? = "",

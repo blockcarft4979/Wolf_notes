@@ -1,4 +1,5 @@
 package com.bck
+
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Environment
@@ -13,7 +14,6 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
-
 
 fun loadAllNotesFromDirectory(dir: File): MutableList<NotesData> {
     val notes = mutableListOf<NotesData>()
